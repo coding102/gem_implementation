@@ -2,15 +2,15 @@
 
 STRIPE Payment with Rails
 
-The first step is adding the Stripe gem to your application’s Gemfile:
+*The first step is adding the Stripe gem to your application’s Gemfile:
 gem 'stripe'
 
-Then, run bundle install to install the gem.
+*Then, run bundle install to install the gem.
 
-Next, generate a new Charges controller:
+*Next, generate a new Charges controller:
 $ rails g controller charges
 
-Add two actions to the controller:
+*Add two actions to the controller:
 def new
 end
 
@@ -35,10 +35,10 @@ rescue Stripe::CardError => e
   redirect_to new_charge_path
 end
 
-Add a route to it in config/routes.rb:
+*Add a route to it in config/routes.rb:
 resources :charges
 
-Add the following to config/initializers/stripe.rb:
+*Add the following to config/initializers/stripe.rb:
 Rails.configuration.stripe = {
   :publishable_key => ENV['PUBLISHABLE_KEY'],
   :secret_key      => ENV['SECRET_KEY']
@@ -46,7 +46,7 @@ Rails.configuration.stripe = {
 
 Stripe.api_key = Rails.configuration.stripe[:secret_key]
 
-Create a charges.html.erb layout under app/views/layouts:
+*Create a charges.html.erb layout under app/views/layouts:
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +56,7 @@ Create a charges.html.erb layout under app/views/layouts:
 </body>
 </html>
 
-Now create new.html.erb under app/views/charges
+*Now create new.html.erb under app/views/charges
 <%= form_tag charges_path do %>
   <article>
     <% if flash[:error].present? %>
@@ -76,4 +76,4 @@ Now create new.html.erb under app/views/charges
           data-locale="auto"></script>
 <% end %>
 
-Finished
+*Finished
