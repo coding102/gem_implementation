@@ -1,19 +1,19 @@
 == README
 
 STRIPE Checkout with Rails
-1. The first step is adding the Stripe gem to your application’s Gemfile:
+* The first step is adding the Stripe gem to your application’s Gemfile:
 
 gem 'stripe'
 
 
-2. Then, run bundle install to install the gem.
+* Then, run bundle install to install the gem.
 
 
-3. Next, generate a new Charges controller:
+* Next, generate a new Charges controller:
 
 $ rails g controller charges
 
-4. Add two actions to the controller:
+* Add two actions to the controller:
 
 def new
 end
@@ -40,12 +40,12 @@ rescue Stripe::CardError => e
 end
 
 
-5. Add a route to it in config/routes.rb:
+* Add a route to it in config/routes.rb:
 
 resources :charges
 
 
-6. Add the following to config/initializers/stripe.rb:
+* Add the following to config/initializers/stripe.rb:
 
 Rails.configuration.stripe = {
   :publishable_key => ENV['PUBLISHABLE_KEY'],
@@ -55,7 +55,7 @@ Rails.configuration.stripe = {
 Stripe.api_key = Rails.configuration.stripe[:secret_key]
 
 
-7.  Creating the views
+*  Creating the views
 
 The next step is to create the relevant views: for the credit card form and for the charge response. Create a charges.html.erb layout under app/views/layouts:
 
@@ -69,7 +69,7 @@ The next step is to create the relevant views: for the credit card form and for 
 </html>
 
 
-8. Now create new.html.erb under app/views/charges, which is the checkout page. Notice the page uses Checkout. Checkout displays a credit card overlay form, performs basic validation, and reports errors inline.
+* Now create new.html.erb under app/views/charges, which is the checkout page. Notice the page uses Checkout. Checkout displays a credit card overlay form, performs basic validation, and reports errors inline.
 
 
 <%= form_tag charges_path do %>
@@ -92,4 +92,4 @@ The next step is to create the relevant views: for the credit card form and for 
 <% end %>
 
 
-9.  Done
+*  Done
