@@ -1,0 +1,59 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+body {
+/* Location of the image */
+    background-image: url(market.jpg);
+  
+/* Background image is centered vertically and horizontally at all times */
+    background-position: center center;
+  
+/* Background image doesn't tile */
+    background-repeat: no-repeat;
+  
+/* Background image is fixed in the viewport so that it doesn't move when the content's height is greater than the image's height */
+    background-attachment: fixed;
+  
+/* This is what makes the background image rescale based on the container's size */
+    background-size: cover;
+  
+/* Set a background color that will be displayed while the background image is loading */
+    background-color: #464646;
+}
+
+
+#checkouts {
+    height: 20%;
+    padding-top: 50px;
+    text-align: center;
+    color: white;
+    width:100%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0, .6);
+}
+
+#checkouts a {
+    font-family: 'Poiret One', cursive;
+    color: white;
+    text-decoration: none;
+    font-size: 9vh;
+}
+
+a:hover {
+    background-color: chartreuse;
+}
