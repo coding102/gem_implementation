@@ -3,77 +3,77 @@
 STRIPE Payment with Rails
 
 *The first step is adding the Stripe gem to your application’s Gemfile:
-gem 'stripe'
+    gem 'stripe'
 
 *Then, run bundle install to install the gem.
 
 *Next, generate a new Charges controller:
-$ rails g controller charges
+    $ rails g controller charges
 
 *Add two actions to the controller:
-def new
-end
+    def new
+    end
 
-def create
-  # Amount in cents
-  @amount = 500
+    def create
+    # Amount in cents
+    @amount = 500
 
-  customer = Stripe::Customer.create(
+    customer = Stripe::Customer.create(
     :email => params[:stripeEmail],
     :source  => params[:stripeToken]
-  )
+    )
 
-  charge = Stripe::Charge.create(
+    charge = Stripe::Charge.create(
     :customer    => customer.id,
     :amount      => @amount,
     :description => 'Rails Stripe customer',
     :currency    => 'usd'
-  )
+    )
 
-rescue Stripe::CardError => e
-  flash[:error] = e.message
-  redirect_to new_charge_path
-end
+    rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to new_charge_path
+    end
 
 *Add a route to it in config/routes.rb:
-resources :charges
+    resources :charges
 
 *Add the following to config/initializers/stripe.rb:
-Rails.configuration.stripe = {
-  :publishable_key => ENV['PUBLISHABLE_KEY'],
-  :secret_key      => ENV['SECRET_KEY']
-}
+    Rails.configuration.stripe = {
+    :publishable_key => ENV['PUBLISHABLE_KEY'],
+    :secret_key      => ENV['SECRET_KEY']
+    }
 
-Stripe.api_key = Rails.configuration.stripe[:secret_key]
+    Stripe.api_key = Rails.configuration.stripe[:secret_key]
 
 *Create a charges.html.erb layout under app/views/layouts:
-<!DOCTYPE html>
-<html>
-<head>
-</head>
-<body>
-  <%= yield %>
-</body>
-</html>
+    <!DOCTYPE html>
+    <html>
+    <head>
+    </head>
+    <body>
+    <%= yield %>
+    </body>
+    </html>
 
 *Now create new.html.erb under app/views/charges
-<%= form_tag charges_path do %>
-  <article>
+    <%= form_tag charges_path do %>
+    <article>
     <% if flash[:error].present? %>
-      <div id="error_explanation">
-        <p><%= flash[:error] %></p>
-      </div>
+    <div id="error_explanation">
+    <p><%= flash[:error] %></p>
+    </div>
     <% end %>
     <label class="amount">
-      <span>Amount: $5.00</span>
+    <span>Amount: $5.00</span>
     </label>
-  </article>
+    </article>
 
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="A month's subscription"
-          data-amount="500"
-          data-locale="auto"></script>
-<% end %>
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-description="A month's subscription"
+    data-amount="500"
+    data-locale="auto"></script>
+    <% end %>
 
 *Finished
