@@ -1,28 +1,13 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+STRIPE Checkout with Rails
 
-Things you may want to cover:
+*The first step is adding the Stripe gem to your application’s Gemfile:
 
-* Ruby version
+gem 'stripe'
 
-* System dependencies
+*Then, run bundle install to install the gem.
 
-* Configuration
+*Next, generate a new Charges controller:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+$ rails g controller charges
