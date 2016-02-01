@@ -2,6 +2,9 @@
 
 STRIPE Payment with Rails
 
+Sign up for free to obtain your Demo and Live keys!
+
+
 *The first step is adding the Stripe gem to your application’s Gemfile:
     gem 'stripe'
 
